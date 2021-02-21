@@ -1,0 +1,65 @@
+# Routes are what we type in our browsers to go to different places in our websites
+# Routes created using route decorators
+
+# app.route decorator handles all the complicated back-end stuff  and simply allow us to write a function that
+# returns information that will be shown on our website for this specific route
+# '/'(forward slash) is the root page of our website
+
+# 1. Goto Terminal
+# 2. Set directory to where Flash program is present
+# 3. Set flask Environment variable with the command  -> set FLASK_APP=FlaskBlog.py
+# 4. Once env variable set type flask run to run the program
+# 5. When run it provides IP and port number for e.g.http://127.0.0.1:5000/ where
+#
+#   127.0.0.1 =IP
+#   5000 = Port
+# If user runs http://localhost:5000/ then also it has the same result
+
+# If user wishes to run app in DEBUG mode then set environment variable FLASK_DEBUG=1  using command set FLASK_DEBUG=1
+
+# If app is run in Debug mode then changes made in code will be reflected by automatically refreshing webpage
+# User does not need to  run the flask run command again
+
+# RUN DIRECTLY WITHOUT SETTING ENVIRONMENT VARIABLES
+# Use command:-
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+# In Terminal just write python program_name.py and it will run the same way
+
+-----------------------------------------FLASK SQL OPERATIONS-----------------------------------------------
+
+pip install flask-sqlalchemy  - To install sqlalchemy database
+
+Commands to run after creating DB Model
+
+>> from [filename] import db
+>> db.create_all()  - Create db and site.db file in directory
+>> from [filename] import [db modelname] -  import all created models
+>> field_name = ModelName(value1=a, value2=b....) = insert values manually into db fields
+>> db.session.add(fieldname) - inform db that we need to add values of field_name to database- Values not added as yet
+>> db.session.commit() - Commit values to database
+
+-------QUERYING THE SQL DB----
+
+>> Model_name.query.all()                       return a list of all values of a database
+>> Model_name.query.first()                     return a list of the first value of a database
+>> Model_name.query.filter_by(column_name='value).all()        return a list of all filtered values based on given condition
+>> Model_name.query.filter_by(column_name='value).first()      return a list of the first filtered value based on given condition
+>> var_name = Model_name.query.filter_by(column_name='value).first()   store table row data in a variable
+>> var_name.column_name            - Access information by mentioning column name
+>> var = Model_name.query.get(id)  - Access information by id number
+
+******** #backref lets Post db model access User DB model fields even if author is not a field in Post DB****
+********* We get the entire User object with backref**************************
+
+>>db.drop_all()   drops all tables from databases
+
+*********************************HASH PASSWORDS*******************
+
+>> pip install flask-bcrypt
+>> from flask_bcrypt import Bcrypt
+>> bcrypt = Bcrypt()   ---Create instance of Bcrypt class
+>> bcrypt.generate_password_hash('testing') ----- Generate hash password
+>> bcrypt.check_password_hash(password_variable, 'password entered')  #Assert if password hash value matches original password entered
+
